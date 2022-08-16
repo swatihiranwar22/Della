@@ -1,10 +1,11 @@
-from tkinter import E
+
 import pyttsx3 #pip install pyttsx3
 import speech_recognition as sr #pip install speechRecognition
 import datetime
 import wikipedia #pip install wikipedia
 import webbrowser
 import os
+import random
 
 
 engine = pyttsx3.init('sapi5')
@@ -15,7 +16,7 @@ engine.setProperty('voice', voices[1].id)
 
 def speak(audio):
     engine.say(audio)
-    engine.runAndWait()
+    engine.runAndWait()  
 
 
 def wishMe():
@@ -29,7 +30,8 @@ def wishMe():
     else:
         speak("Good Evening!")  
 
-    speak("I am Della Maam. Please tell me how can I help you")       
+    speak("I am Della, Maam. Please tell me how can I help you")   
+
 
 def takeCommand():
     #It takes microphone input from the user and returns string output
@@ -46,11 +48,17 @@ def takeCommand():
         print("Could you repeat that please....")
         return "None"
     return query
+
+
+
 if __name__== "__main__":
     wishMe()
     while True:
         query=takeCommand().lower() 
         #logic for executing task based on query
+
+
+        ### **** ---- WEB ACTIVITIS -----*****
 
         if 'wikipedia' in query:
             speak('searching wikipedia...')
@@ -71,17 +79,37 @@ if __name__== "__main__":
             song=os.listdir(music_dir)
             print(song)
             os.startfile(os.path.join(music_dir,song[0]))
-        elif 'the time' in query:
-            strTime=datetime.datetime.now().strftime('%H:%M:%S')
-            speak(f" Mam The time is{strTime}")
         elif 'open code ' in query:
             path="C:\\Users\ASUS\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(path)
-        elif 'you are awesome' or 'nice work' in query:
+        
+        #### ----**** DELLA'S ACTIVITY *****---- 
+
+
+        elif 'the time' in query:
+            strTime=datetime.datetime.now().strftime('%H:%M:%S')
+            speak(f" Mam The time is{strTime}")
+
+        elif 'you are awesome' in query or 'nice work' in query:
             speak("That is my job mam")
-        elif 'Who made you?' in query:
-            speak("I was created by Miss SWATI")
-        elif 'quit' in query:
+
+        elif 'who made you' in query or 'designed you' in query:
+            l = ["i started as an idea, then my maam, swati helped bring me to the life",'who calls her mother by name',"A very gorgeos lady with the sharp mind, and a kind hearted swati hiranwar",'swati hiranwar is my boss']
+            speak(random.choice(l))
+
+        elif "what are you doing" in query:
+            l = ["trying to be better,  ma'am", "thinking, what are you thinking, maam ",'nothing much,  boss']  
+            speak(random.choice(l))
+
+        elif 'your birthday' in query :
+            l = ['i was designed on,  16th of the july in the evening',"16 july was that auspicious day for me",'16 july  was the day when my boss  converted her idea into reality '] 
+            speak(random.choice(l))
+
+        elif "how are you" in query or "how is you" in query :
+            l = ['i am great!, thank you for asking, boss', "woundring how is you", "thank for asking, i'm doing ok. a lot is going on in this world today. i hope you are taking care of yurself",'im fine. your are very kind to ask, specially in this tempestupus time','i am good, thank you for asking . i hope your are doing well too. if i can help with anything, just ask ']
+            speak(random.choice(l))
+
+        elif "ok bye" in query or "see you later" in query :
+            l = ['do let me know,   when you need somthing', 'ok sir,  call me whenever you need somthing', 'happy to serve you','always remember im just a call away,  boss']
+            speak(random.choice(l))
             quit()
-        else:
-            speak("Sorry this is out of range but I would love to help you again.")
