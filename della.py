@@ -89,17 +89,17 @@ if __name__== "__main__":
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             print(strTime)
-            speak(f"Sir, the Time is {strTime}")
+            speak(f"boss, the Time is {strTime}")
 
         elif "the date" in query :
             strDate = datetime.date.today().strftime("%B %d, %y")
             print(strDate)
-            speak(f'sir, the Date is {strDate}')
+            speak(f'boss, the Date is {strDate}')
 
         elif "the day" in query :
             strDay = datetime.datetime.now().strftime("%A")
             print(strDay)
-            speak(f'sir, the Day is {strDay}')
+            speak(f'boss, the Day is {strDay}')
         
                      
         
